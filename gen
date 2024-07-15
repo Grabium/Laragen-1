@@ -1,0 +1,4 @@
+<?php
+require __DIR__.'/Laragen/autoload.php';
+$app = new Laragen\App\App($argc, $argv);
+$app->start();
