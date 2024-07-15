@@ -3,6 +3,7 @@ namespace Laragen\Entity;
 
 use Laragen\Views\Question;
 use Laragen\SystemPart\Migration;
+use Laragen\SystemPart\Model;
 
 class Entity
 {
@@ -33,6 +34,12 @@ class Entity
   {
     $this->migration = new Migration($this->userInput);
     $this->migration->createTable();
+  }
+
+  public function makeModel()
+  {
+    $this->model = new Model($this->name);
+    //$this->model->createModel();
   }
   
 }

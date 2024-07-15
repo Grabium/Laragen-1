@@ -18,7 +18,8 @@ class Crud extends Fgen
   {
     $this->entity->confirmName();
     $this->entity->makeMigration();
-    var_dump($this);
+    //var_dump($this);
+    $this->entity->makeModel();
   }
 
 

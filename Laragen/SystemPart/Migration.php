@@ -2,6 +2,7 @@
 namespace Laragen\SystemPart;
 
 use Laragen\Views\Question;
+use Laragen\Template\Template;
 
 class Migration
 {
@@ -24,7 +25,8 @@ class Migration
     $this->setColumns();
     $this->setCode('php artisan make:migration create_'.$this->tableName.'_table');
     $exitLine = $this->runCode();
-    $this->getLocalMigrate($exitLine);
+    $this->setLocalMigrate($exitLine);
+    $this->replacement();
     //var_dump($this);
   }
 
@@ -117,7 +119,7 @@ class Migration
     return $exitLine;
   }
 
-  private function getLocalMigrate(string $exitLine)
+  private function setLocalMigrate(string $exitLine)
   { 
     $bef = (strpos($exitLine, '[')+1);
     $aft = (strpos($exitLine, ']'));
@@ -125,14 +127,14 @@ class Migration
     $this->nameMigration =  substr($exitLine, $bef, $end).'.php';
     $this->localMigration = realpath(__DIR__.'/../../database/migrations/'.$this->nameMigration);
   }
-/*
+  
   private function replacement()
   {
-    $oldFile = implode("", file($this->localMigration));//string
-    $arrData = [$oldFile, $this->columns];
-    $newFile = (new SubstrTemplate(__CLASS__, $arrData))->getFile();//string
+    
+    $arrData = ['tag' => 'crudMigration','localFile' => $this->localMigration, 'data' => $this->columns];
+    $newFile = (new Template($arrData))->overrideFile();//string
     if(file_put_contents($this->localMigration, $newFile)){
       print 'Migration ok'.PHP_EOL;
     };
-  }*/
+  }
 }

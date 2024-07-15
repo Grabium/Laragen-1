@@ -19,4 +19,9 @@ class App
     Validate::ifBrokenArgs($this->fgen);//pode chamar um exit().
     $this->fgen->run();
   }
+
+  public function registerProcess()
+  {
+    //arquivar o processo e entidade num json. chamar de gen
+  }
 }
