@@ -18,8 +18,8 @@ class Crud extends Fgen
     $this->argumentsTemp = $argumentsTemp;
     //prototype
     $this->entity    = new Entity();
-    $this->migration = new MigrationCrud('migration ok');
-    $this->model     = new ModelCrud('model ok tambem');
+    $this->migration = new MigrationCrud();
+    //$this->model     = new ModelCrud();
     
   }
 
