@@ -7,17 +7,18 @@ use Laragen\SystemPart\Model;
 
 class Entity
 {
-  private string $userInput = '';
-  private string      $name = '';
+  public string      $userInput = '';
+  public string           $name = '';
+  public array  $imutableColumn = ['id', 'created_at'];
+  public string $localMigration = '';
+  public array         $columns = [];
+  public string  $nameMigration = '';
+  public string      $tableName = '';
   
-  public function __construct(string $userInput)
+  public function setName(string $userInput)
   {
     $this->userInput = $userInput;
     $this->name = $this->userInput;
-  }
-
-  public function confirmName()
-  {
     $this->name = $this->formatName($this->name);
     $question = 'Entity: '.$this->name.'.'.PHP_EOL.'Press [ENTER] to continue or type to rename entity:';
     $this->name = ($name = Question::oneNameOrEnter($question)) ? $name : $this->name;
@@ -30,16 +31,6 @@ class Entity
     return str_replace(' ', '', $name);//retira espaços
   }
 
-  public function makeMigration()
-  {
-    $this->migration = new Migration($this->userInput);
-    $this->migration->createTable();
-  }
-
-  public function makeModel()
-  {
-    $this->model = new Model($this->name);
-    //$this->model->createModel();
-  }
+  
   
 }

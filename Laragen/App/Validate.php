@@ -30,9 +30,9 @@ class Validate
   }
   
   //faz toda a validação para save mas não altera objeto.
-  private static function crud(Crud $save)
+  private static function crud(Crud $crud)
   {
-    if(count($save->argumentsTemp) != 1){
+    if(count($crud->argumentsTemp) != 1){
       exit('Inadequate number of arguments. Please try: php gen help'.PHP_EOL);
     }
   }

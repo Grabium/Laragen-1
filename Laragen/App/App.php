@@ -9,7 +9,7 @@ class App
 
   public function __construct(int $argc, array $argv)
   {
-    $funcArgsValidateds = Validate::initialValidation($argc, $argv);//array(função, argumentos)
+    $funcArgsValidateds = Validate::initialValidation($argc, $argv);//array(função, argumentos) talvez o help.
     $this->fgen = Fgen::getFunctionGenObjectFactory($funcArgsValidateds);//retorna o objeto/função
     unset($argc, $argv, $funcArgsValidateds);
   }
