@@ -1,12 +1,12 @@
 <?php 
-namespace Laragen\SystemPart;
+namespace Laragen\SystemPart\Model;
 
-use Laragen\SystemPart\Model\Model;
-use Laragen\SystemPart\Model\ModelArrays;
+//use Laragen\SystemPart\Model\Model;
+//use Laragen\SystemPart\Model\ModelArrays;
 use Laragen\Entity\Entity;
 use Laragen\App\Code;
 
-class ModelCrud
+class FacadeModel
 {
   private Entity      $entity;
   private Model       $model;
@@ -23,7 +23,5 @@ class ModelCrud
     $exitLine = Code::runCode('php artisan make:model '.$this->entity->name);
     $this->model->getLocalModelAndVerify($exitLine);
     $this->model->replacement();
-    //var_dump($this->entity->hidden);
-    echo 'finalizou aqui : Laragen/Model.php line 21.';
   }
 }

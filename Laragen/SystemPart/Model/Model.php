@@ -22,11 +22,7 @@ class Model
     if(!$this->entity->localModel = realpath(__DIR__.'/../../../'.$loc)){
      exit('Fail');
     }
-    
   }
-
-  
-  
 
   public function replacement()
   {

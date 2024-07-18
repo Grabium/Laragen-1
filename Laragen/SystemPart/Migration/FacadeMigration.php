@@ -1,14 +1,14 @@
 <?php
-namespace Laragen\SystemPart;
+namespace Laragen\SystemPart\Migration;
 
-use Laragen\SystemPart\Migration\Migration;
-use Laragen\SystemPart\Migration\Column;
+//use Laragen\SystemPart\Migration\Migration;
+//use Laragen\SystemPart\Migration\Column;
 use Laragen\Entity\Entity;
 use Laragen\App\Code;
 
 
 
-class MigrationCrud
+class FacadeMigration
 {
   private Entity $entity;
   private Migration $migration;
@@ -17,15 +17,16 @@ class MigrationCrud
   {
     $this->entity = $entity;
     $this->migration = new Migration($this->entity);
+    $this->columnObj = new Column($this->entity);
     
     $this->entity->tableName = $this->migration->formatName($this->entity->userInput.'s');
     $this->migration->confirmTableName('Table: '.$this->entity->tableName.'.'.PHP_EOL.'Press [ENTER] to continue or type to rename the name of table:');
-    $this->setColumns();
+    $this->columnObj->setColumns();
     $exitLine = Code::runCode('php artisan make:migration create_'.$this->entity->tableName.'_table');
     $this->migration->setLocalMigrate($exitLine);
     $this->migration->replacement();
   }
-
+/*
   //recursividade indireta
   private function setColumns()
   {
@@ -54,6 +55,6 @@ class MigrationCrud
     $this->entity->columns = Column::setTypeColumns($this->entity->columns, $this->entity->imutableColumn);
     $this->showColumns();
   }
-
+*/
   
 }

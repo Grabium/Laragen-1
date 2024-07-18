@@ -2,24 +2,24 @@
 namespace Laragen\Fgen;
 
 use Laragen\Entity\Entity;
-use Laragen\SystemPart\MigrationCrud;
-use Laragen\SystemPart\ModelCrud;
+use Laragen\SystemPart\Migration\FacadeMigration;
+use Laragen\SystemPart\Model\FacadeModel;
 //use Laragen\SystemPart\;
 
 class Crud extends Fgen
 {
-  private        Entity $entity;
-  private MigrationCrud $migration;
-  private     ModelCrud $model;
-  public          array $argumentsTemp = [];
+  private          Entity $entity;
+  private FacadeMigration $migration;
+  private     FacadeModel $model;
+  public            array $argumentsTemp = [];
   
   public function __construct(array $argumentsTemp)
   {
     $this->argumentsTemp = $argumentsTemp;
     //prototype
     $this->entity    = new Entity();
-    $this->migration = new MigrationCrud();
-    $this->model     = new ModelCrud();
+    $this->migration = new FacadeMigration();
+    $this->model     = new FacadeModel();
     
   }
 

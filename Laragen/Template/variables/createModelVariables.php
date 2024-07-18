@@ -20,6 +20,8 @@ $entity = $this->arrayData[0];
 
   $newContent =
 '{
+
+  protected $table = \''.$entity->tableName.'\';
   protected $fillable = '.$fillable.';
   protected $hidden = '.$hidden.';
   
