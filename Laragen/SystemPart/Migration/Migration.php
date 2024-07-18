@@ -47,8 +47,8 @@ class Migration
     $arrData = ['flag' => 'createMigrationVariables',
       'localFile' => $this->entity->localMigration, 
       'data' => $this->entity->columns];
-    $ifOverriding = (new Template($arrData))->overrideFile();//string
-    if($ifOverriding == false){exit('Not make migrate corretlly');}
+    $success = (new Template($arrData))->overrideFile();//string
+    if($success == false){exit('Not make migrate corretlly');}
     print 'Migrate ok!'.PHP_EOL;
   }
   

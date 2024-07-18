@@ -12,6 +12,8 @@ class Entity
   public array  $imutableColumn = ['id', 'created_at'];
   public string $localMigration = '';
   public array         $columns = [];
+  public array        $fillable = [];
+  public array          $hidden = [];
   public string  $nameMigration = '';
   public string      $tableName = '';
   

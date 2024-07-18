@@ -1,0 +1,35 @@
+<?php
+
+$entity = $this->arrayData[0];
+//print_r($entity);die();
+  $blankModel = 
+'{
+    use HasFactory;';
+
+  $fillable = '[';
+  foreach($entity->fillable as $k => $f){
+    $fillable .= '\''.$f.'\', ';
+  }
+  $fillable .= ']';
+
+
+  $hidden = '[';
+  foreach($entity->hidden as $k => $h){
+    $hidden .= '\''.$h.'\', ';
+  }
+  $hidden .= ']';
+
+  $newContent =
+'{
+  protected $fillable = '.$fillable.';
+  protected $hidden = '.$hidden.';
+  
+  /*public function <entity>()
+  {
+    //return $this->hasOne(<Entity>::class, "foreign_key", "selflocal_key");
+    //return $this->belongsTo(<Entity>::class ...);
+    //return $this->hasMany(<Entity>::class);
+    //return $this->belongsToMany(<Entity>::class);
+  }*/';
+
+  $contentFile = str_replace($blankModel, $newContent, $contentFile);

@@ -10,7 +10,7 @@ class Crud extends Fgen
 {
   private        Entity $entity;
   private MigrationCrud $migration;
-  //private     ModelCrud $model;
+  private     ModelCrud $model;
   public          array $argumentsTemp = [];
   
   public function __construct(array $argumentsTemp)
@@ -19,7 +19,7 @@ class Crud extends Fgen
     //prototype
     $this->entity    = new Entity();
     $this->migration = new MigrationCrud();
-    //$this->model     = new ModelCrud();
+    $this->model     = new ModelCrud();
     
   }
 
@@ -27,8 +27,7 @@ class Crud extends Fgen
   {    
     $this->entity->setName(array_shift($this->argumentsTemp));
     $this->migration->createTable($this->entity);
-    /*
-    $this->entity->makeModel();*/
+    $this->model->makeModel($this->entity);
     //print_r($this);
   }
 
