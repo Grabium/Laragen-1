@@ -1,7 +1,6 @@
 <?php
 
 $entity = $this->arrayData[0];
-//print_r($entity);die();
   $blankModel = 
 '{
     use HasFactory;';
