@@ -18,7 +18,7 @@ class Model
     $bef = (strpos($exitLine, '[')+1);
     $aft = (strpos($exitLine, ']'));
     $end = ($aft - $bef);
-    $loc =  substr($exitLine, $bef, $end);
+    $loc =  substr($exitLine, $bef, $end);//separar para setLocalModel() e fileExists() como em controller
     if(!$this->entity->localModel = realpath(__DIR__.'/../../../'.$loc)){
      exit('Fail');
     }
