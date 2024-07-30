@@ -21,7 +21,10 @@ class Entity
   //model
   public string      $localModel = '';
   //controller
+  public string $subdirectoryController = '';
   public string $localController = '';
+  public string  $nameSpaceController = '';
+  
   
   public function setName(string $userInput)
   {

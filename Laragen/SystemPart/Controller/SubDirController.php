@@ -27,6 +27,6 @@ class SubDirController
     //$subdirectoryController = iconv('utf-8', 'ASCII//TRANSLIT', $subdirectoryController);
     
     //var_dump($subdirectoryController);
-    return $subdirectoryController.'/';
+    return $subdirectoryController;
   }
 }

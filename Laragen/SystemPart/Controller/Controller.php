@@ -4,6 +4,7 @@ namespace Laragen\SystemPart\Controller;
 
 use Laragen\Entity\Entity;
 use Laragen\Views\Question;
+use Laragen\Template\Template;
 
 class Controller
 {
@@ -34,24 +35,47 @@ class Controller
   public function setSubdirectory(): string
   {
     $question = 'Type the name of subdirectory for controller Or Press [ENTER] to skip'.PHP_EOL.'Look: New/Sub/Directory'.PHP_EOL.'Look: New Sub Directory';
-    $subdirectoryController = ($subdirectoryController = Question::oneNameOrEnter($question)) ? $subdirectoryController : ' ';
+    $subdirectoryController = ($subdirectoryController = Question::oneNameOrEnter($question)) ? $subdirectoryController. : ' ';
     $subdirectoryController = SubDirController::validateSubDir($subdirectoryController);
-    $this->setLocalController($subdirectoryController);
-    return $subdirectoryController;
+    $this->entity->subdirectoryController = $subdirectoryController;
+    return $this->setLocalController();
   }
 
-  public function setLocalController($subdirectoryController)
+  public function setLocalController()
   {
-    $this->entity->localController = realpath(__DIR__.'/../../../app/Http/Controllers').'/';
-    $this->entity->localController .= $subdirectoryController.$this->entity->name.'.php';
+    $this->entity->localController = realpath(__DIR__.'/../../../app/Http/Controllers/'.$this->entity->subdirectoryController.'/'.$this->entity->name.'Controller.php');
+    $this->setNameSpace();
+    return $subdir;
   }
+
+  public function setNameSpace()
+  (
+    $subdir = ucfirst($this->entity->subdirectoryController);
+    $this->entity->nameSpaceController = str_replace('/', '\\', $subdir);
+  )
 
   public function fileExists()
   {
     if(!file_exists($this->entity->localController)){
       exit('Controller: '.$this->entity->localController.' Not found!');
     }
-    print 'Controller ok!'.PHP_EOL;
+    print 'Controller created!'.PHP_EOL;
+  }
+
+  public function crudReplacement()
+  {
+    //recolocar o crud ainda sem nenhuma validação ouqualquer outra proxy.
+    //$dif = array_diff();
+    $arrData = ['flag' => 'createControllerVariables',
+      'localFile' => $this->entity->localController, 
+      'data' => [$this->entity]
+    ];
+    $success = (new Template($arrData))->overrideFile();//string
+    if(!$success){
+      exit('Controller overwrite fail'.PHP_EOL);
+    }
+    print 'Controller overwited!'.PHP_EOL;
+    
   }
   
 }
