@@ -14,10 +14,10 @@ class FacadeController
   {
     $this->entity = $entity;  
     $this->controller = new Controller($this->entity);
-    $nameController = $this->controller->setSubdirectory();
-    $exitLine = Code::runCode('php artisan make:controller '.$nameController);
+    $this->controller->setSubdirectory();
+    $exitLine = Code::runCode($this->controller->setCreatorCode());
+    $this->controller->setLocalController();
     $this->controller->crudReplacement();
-    $this->controller->fileExists();
     var_dump($this->controller);
 
     //perguntar se é uma api e configurar entity->route : api|web -

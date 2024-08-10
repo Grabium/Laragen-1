@@ -8,7 +8,7 @@ $contentFile = '
 
 namespace <nameSpaceController>;
 
-//use Illuminate\Http\Request;
+use Illuminate\Http\Request;
 use App\Models\<name>;
 use Illuminate\Support\Facades\DB;
 
@@ -20,7 +20,7 @@ class <name>Controller extends Controller
   public function index()
   {
     $msg = DB::table(\'<tableName>\')
-      ->select(\'<columns_string>\')
+      ->select(\'<fillabels_not_hidden>\')
       ->get();
     return response()->json([\'msg\' => $msg]);
   }
@@ -35,8 +35,8 @@ class <name>Controller extends Controller
   {
     $msg = <name>::findOrFail($id);
     //outras opções:
-    //$msg = DB::table(\'<tableName>\')->select(\'<fillabels>\')->find($id);
-    //$msg = DB::table(\'<tableName>\')->select(\'<fillabels>\')->where(\'name\', $id)->first(); //comparando entradas nome e id compatíveis.
+    //$msg = DB::table(\'<tableName>\')->select(\'<fillabels_not_hidden>\')->find($id);
+    //$msg = DB::table(\'<tableName>\')->select(\'<fillabels_not_hidden>\')->where(\'name\', $id)->first(); //comparando entradas nome e id compatíveis.
     return response()->json([\'msg\' => $msg]);
     
   }
@@ -57,6 +57,14 @@ class <name>Controller extends Controller
   }
 }';
 
-//fazer os str_replace de cada uma das tags. Atenção ao <colunas_string>
 
-$contentFile = str_replace($oldModel, $newContent, $contentFile);
+$contentFile = str_replace('<name>', $entity->name, $contentFile);
+$contentFile = str_replace('<nameSpaceController>', $entity->nameSpaceController, $contentFile);
+$contentFile = str_replace('<tableName>', $entity->tableName, $contentFile);
+
+$fillabels_not_hidden = '';
+foreach($entity->fillable as $k => $item){
+  if(in_array($item, $entity->hidden)){continue;}
+  $fillabels_not_hidden .= $item.', ';
+}
+$contentFile = str_replace('<fillabels_not_hidden>', $fillabels_not_hidden, $contentFile);

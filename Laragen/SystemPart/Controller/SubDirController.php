@@ -4,10 +4,10 @@ namespace Laragen\SystemPart\Controller;
 
 class SubDirController
 {
-  public static function validateSubDir(string $subdirectoryController): string
+  public static function validateSubDir(string|null $subdirectoryController): string|null
   {
-    if($subdirectoryController == ' '){
-      return '';
+    if(!$subdirectoryController){
+      return null;
     }
     $subdirectoryController = str_replace(['/','\\','-', '_'], ' ', $subdirectoryController);//retira espaços
     //var_dump($subdirectoryController);die();
