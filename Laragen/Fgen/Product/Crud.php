@@ -1,5 +1,5 @@
 <?php
-namespace Laragen\Fgen;
+namespace Laragen\Fgen\Product;
 
 use Laragen\Entity\Entity;
 use Laragen\SystemPart\Migration\FacadeMigration;

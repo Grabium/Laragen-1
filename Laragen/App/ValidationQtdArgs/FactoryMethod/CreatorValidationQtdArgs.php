@@ -13,9 +13,9 @@ abstract class CreatorValidationQtdArgs
   public static function callFactory($fgen):ValidationQtdArgs
   {
     $r = explode('\\', get_class($fgen));
-    $f = end($r);
-    $f = 'Laragen\\App\\ValidationQtdArgs\\FactoryMethod\\'.$f.'FactoryValidationQtdArgs';
-    return $f::factory();
+    $factory = end($r);
+    $factory = 'Laragen\\App\\ValidationQtdArgs\\FactoryMethod\\'.$factory.'FactoryValidationQtdArgs';
+    return $factory::factory();
   }
 
     

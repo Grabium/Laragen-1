@@ -1,7 +1,7 @@
 <?php
 namespace Laragen\App;
 
-use Laragen\Fgen\Fgen;
+use Laragen\Fgen\Product\Fgen;
 use Laragen\App\ValidationQtdArgs\FactoryMethod\CreatorValidationQtdArgs;
 
 
@@ -21,7 +21,7 @@ class Validation
       $arguments[] = $item;
     }
 
-    return [$function, $arguments];
+    return ['function' => $function, 'argumentsTemp' => $arguments];
   }
 
   public static function verifyQtdArgsAccordingFunction(Fgen $fgen)
