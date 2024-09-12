@@ -1,7 +1,7 @@
 <?php
 namespace Laragen\App;
 
-use Laragen\Fgen\FactoryMethod\Creator;
+use Laragen\Fgen\FactoryMethod\FgenCreator;
 use Laragen\Fgen\Product\Fgen;
 
 class App
@@ -11,7 +11,7 @@ class App
   public function __construct(int $argc, array $argv)
   {
     $funcArgsValidateds = Validation::callHelpOrNot($argc, $argv);//array(função, argumentos) talvez o help.
-    $this->fgen = Creator::callFactory($funcArgsValidateds);//retorna o objeto/função
+    $this->fgen = FgenCreator::callFactory($funcArgsValidateds);//retorna o objeto/função
     //print var_dump($this->fgen); die();
     Validation::verifyQtdArgsAccordingFunction($this->fgen);
   }
