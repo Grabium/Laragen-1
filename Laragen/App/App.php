@@ -9,14 +9,13 @@ class App
 
   public function __construct(int $argc, array $argv)
   {
-    $funcArgsValidateds = Validate::initialValidation($argc, $argv);//array(função, argumentos) talvez o help.
+    $funcArgsValidateds = Validation::callHelpOrNot($argc, $argv);//array(função, argumentos) talvez o help.
     $this->fgen = Fgen::getFunctionGenObjectFactory($funcArgsValidateds);//retorna o objeto/função
-    unset($argc, $argv, $funcArgsValidateds);
+    Validation::verifyQtdArgsAccordingFunction($this->fgen);
   }
 
   public function start()
   {
-    Validate::ifBrokenArgs($this->fgen);//pode chamar um exit().
     $this->fgen->run();
   }
 
