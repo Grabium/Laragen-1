@@ -1,7 +1,7 @@
 <?php
-namespace Laragen\App\ValidationQtdArgs;
+namespace Laragen\App\ValidationQtdArgs\Product;
 
-class CrudValidationQtdArgs extends ValidationQtdArgs
+class CrudQtdArgs extends QtdArgs
 {
   public function validateQtdArgs(array $arguments)
   {

@@ -2,8 +2,7 @@
 namespace Laragen\App;
 
 use Laragen\Fgen\Product\Fgen;
-use Laragen\App\ValidationQtdArgs\FactoryMethod\CreatorValidationQtdArgs;
-
+use Laragen\App\ValidationQtdArgs\FactoryMethod\QtdArgsCreator;
 
 class Validation
 {
@@ -26,7 +25,7 @@ class Validation
 
   public static function verifyQtdArgsAccordingFunction(Fgen $fgen)
   {
-    $validator = CreatorValidationQtdArgs::callFactory($fgen);//object - ValidationQtdArgs
+    $validator = QtdArgsCreator::callFactory($fgen);//object - ValidationQtdArgs
     $validator->validateQtdArgs($fgen->argumentsTemp);
   }
 
