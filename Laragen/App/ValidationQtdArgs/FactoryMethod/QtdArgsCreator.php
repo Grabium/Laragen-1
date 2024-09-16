@@ -15,6 +15,13 @@ abstract class QtdArgsCreator
     $r = explode('\\', get_class($fgen));
     $factory = end($r);
     $factory = 'Laragen\\App\\ValidationQtdArgs\\FactoryMethod\\'.$factory.'QtdArgsCreator';
-    return $factory::factory();
+    
+    try{
+      $fgen = $factory::factory();
+    }catch(Exception $e){
+      $fgen = Laragen\App\ValidationQtdArgs\FactoryMethod\HelpQtdArgsCreator::factory();
+    }finally{
+      return $fgen;
+    }
   }
 }

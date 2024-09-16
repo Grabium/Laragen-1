@@ -1,21 +1,26 @@
 <?php
-namespace Laragen\Fgen;
+namespace Laragen\Fgen\Product;
+
+
 
 class Help extends Fgen
 {
-  private string $content;
+  private string $message = '';
 
   public function __construct(array $message)
   {
-    print __CLASS__.$message[0].PHP_EOL;
-    $this->setContent();
-    print $this->content;
-    exit($message[0].' Change one of options above!'.PHP_EOL);
+    $this->message = (($message != null)&&($message[0] != null)) ? $message[0] : 'Can i help you? ';
   }
 
-  private function setContent()
+  public function run()
   {
-    $this->content ='
+    print $this->getContent();
+    exit($this->message.' Change one of options above!'.PHP_EOL);
+  }
+
+  private function getContent()
+  {
+    return '
 
 
     ▒▒▒▒▒▒▒▒▒▒▒▒

@@ -10,9 +10,9 @@ class App
 
   public function __construct(int $argc, array $argv)
   {
-    $funcArgsValidateds = Validation::callHelpOrNot($argc, $argv);//array(função, argumentos) talvez o help.
+    $funcArgsValidateds = Validation::callHelpOrNot($argv);//array(função, argumentos) talvez o help.
     $this->fgen = FgenCreator::callFactory($funcArgsValidateds);//retorna o objeto/função
-    //print var_dump($this->fgen); die();
+    print var_dump($this->fgen); die();
     Validation::verifyQtdArgsAccordingFunction($this->fgen);
   }
 
