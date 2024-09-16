@@ -8,14 +8,15 @@ class Help extends Fgen
   private string $message = '';
 
   public function __construct(array $message)
-  {
+  { 
+    $this->argumentsTemp = $message;
     $this->message = (($message != null)&&($message[0] != null)) ? $message[0] : 'Can i help you? ';
   }
 
   public function run()
   {
     print $this->getContent();
-    exit($this->message.' Change one of options above!'.PHP_EOL);
+    exit($this->message.PHP_EOL.'Change one of options above!'.PHP_EOL);
   }
 
   private function getContent()

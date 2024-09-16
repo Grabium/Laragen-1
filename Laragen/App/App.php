@@ -12,7 +12,6 @@ class App
   {
     $funcArgsValidateds = Validation::callHelpOrNot($argv);//array(função, argumentos) talvez o help.
     $this->fgen = FgenCreator::callFactory($funcArgsValidateds);//retorna o objeto/função
-    print var_dump($this->fgen); die();
     Validation::verifyQtdArgsAccordingFunction($this->fgen);
   }
 
