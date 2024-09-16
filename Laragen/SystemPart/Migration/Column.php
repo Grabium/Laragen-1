@@ -3,14 +3,17 @@ namespace Laragen\SystemPart\Migration;
 
 use Laragen\Views\Question;
 use Laragen\Entity\Entity;
+use Laragen\App\Json;
 
 class Column
 {
   private Entity $entity;
+  private array  $patternType = [];//buscar do json
   
   public function __construct(Entity $entity)
   {
     $this->entity = $entity;
+    $this->patternType = Json::getJson(__DIR__.'/../../App/config/patternType.json');
     unset($entity);
   }
   
@@ -18,27 +21,32 @@ class Column
   {
     $this->entity->columns = [['type' => 'unsignedBigInteger', 'name' => 'id']];
     print 'Put the columns names. Not is needed put \'ID\'.'.PHP_EOL;
+    
     while(true){
       $question = 'Set a name column or press [ENTER] for skip: ';
       $name = Question::oneNameOrEnter($question);
-      $name = strtolower($name);
-      $name = str_replace(['\\',' ', '\/'], '_', $name);
-      print PHP_EOL;
-      if(($name != null )&&($name != '')){
-        $tp = (($name == 'email')||($name == 'e-mail'))? 'email':'string';
-        $tp = ($name == 'old')? 'integer': $tp ;
-        $this->entity->columns[] = ['type' => $tp, 'name' => $name];
-        print 'Next column:'.PHP_EOL;
-      }else{
+      
+      
+      if($name == null){
         print 'Columns presets.'.PHP_EOL;
         print 'For default, is writed like STRING on doc migrate. You can customize this after this and before migrate.'.PHP_EOL;
         break;
+        
+      }else{
+        $name = strtolower($name);
+        $name = str_replace(['\\',' ', '\/'], '_', $name);
+        print PHP_EOL;
+        $type = (array_key_exists($name, $this->patternType)) ? $this->patternType[$name] : 'string';
+        $this->entity->columns[] = ['type' => $type, 'name' => $name];
+        print 'Next column:'.PHP_EOL;
       }
     }
     $this->entity->columns[] = ['type' => 'timestamp', 'name' => 'created_at'];
     $this->showColumns($this->entity->columns);
     $this->rechangeColumns();
   }
+
+  
 
   public function showColumns(array $columns)
   {
@@ -53,7 +61,6 @@ class Column
   {
     $question = 'Change a choice: '.PHP_EOL.'Reset[1] Retype[2] Confrim[enter]';
     $ci = Question::choiceInput([$question , '1', '2']);
-    //return Question::choiceInput([$question , '1', '2']);//os if eram fora
     if($ci == 1){
       $this->setColumns();
     }elseif($ci == 2){
@@ -75,7 +82,6 @@ class Column
       print PHP_EOL;
     }
     print PHP_EOL.PHP_EOL;
-    //return $columns;
     $this->showColumns($this->entity->columns);
     $this->rechangeColumns();
   }
