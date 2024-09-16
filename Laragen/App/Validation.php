@@ -2,7 +2,7 @@
 namespace Laragen\App;
 
 use Laragen\Fgen\Product\Fgen;
-use Laragen\App\ValidationQtdArgs\FactoryMethod\QtdArgsCreator;
+use Laragen\ValidationQtdArgs\FactoryMethod\QtdArgsCreator;
 
 class Validation
 {
@@ -10,8 +10,10 @@ class Validation
   {
     $validatedsArguments = ['function' => '', 'argumentsTemp' => []];
 
-    if($argv[1] == 'help'){
-      $validatedsArguments['argumentsTemp'] = [' '];
+    if(count($argv) >= 2 ){
+      if($argv[1] == 'help'){
+        $validatedsArguments['argumentsTemp'] = [' '];
+      }
     }
     
     if(count($argv) <= 1 ){//php gen

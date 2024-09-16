@@ -1,9 +1,9 @@
 <?php
 
-namespace Laragen\App\ValidationQtdArgs\FactoryMethod;
+namespace Laragen\ValidationQtdArgs\FactoryMethod;
 
-use Laragen\App\ValidationQtdArgs\Product\QtdArgs;
-use Laragen\App\ValidationQtdArgs\FactoryMethod\CrudQtdArgsCreator;
+use Laragen\ValidationQtdArgs\Product\QtdArgs;
+use Laragen\ValidationQtdArgs\FactoryMethod\CrudQtdArgsCreator;
 
 abstract class QtdArgsCreator
 {
@@ -13,7 +13,7 @@ abstract class QtdArgsCreator
   {
     $qtdArgs = explode('\\', get_class($fgen));
     $qtdArgs = end($qtdArgs);
-    $qtdArgs = 'Laragen\\App\\ValidationQtdArgs\\FactoryMethod\\'.$qtdArgs.'QtdArgsCreator';
+    $qtdArgs = 'Laragen\\ValidationQtdArgs\\FactoryMethod\\'.$qtdArgs.'QtdArgsCreator';
 
     return $qtdArgs::factory();
   }

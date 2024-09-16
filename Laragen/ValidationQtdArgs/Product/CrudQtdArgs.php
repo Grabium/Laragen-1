@@ -1,5 +1,5 @@
 <?php
-namespace Laragen\App\ValidationQtdArgs\Product;
+namespace Laragen\ValidationQtdArgs\Product;
 
 class CrudQtdArgs extends QtdArgs
 {
