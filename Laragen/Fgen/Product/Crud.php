@@ -9,29 +9,27 @@ use Laragen\SystemPart\Controller\FacadeController;
 class Crud extends Fgen
 {
   private           Entity $entity;
-  private  FacadeMigration $migration;
-  private      FacadeModel $model;
-  private FacadeController $controller;
+  private  FacadeMigration $migrationFacade;
+  private      FacadeModel $modelFacade;
+  private FacadeController $controllerFacade;
   public             array $argumentsTemp = [];
   
   public function __construct(array $argumentsTemp)
   {
-    $this->argumentsTemp = $argumentsTemp;
-    //buider
-    $this->entity        = new Entity();
-    $this->migration     = new FacadeMigration();
-    $this->model         = new FacadeModel();
-    $this->controller    = new FacadeController();
+    $this->argumentsTemp    = $argumentsTemp;
+    $this->entity           = new Entity();
+    $this->migrationFacade  = new FacadeMigration();
+    $this->modelFacade      = new FacadeModel();
+    $this->controllerFacade = new FacadeController();
     
   }
 
   public function run()
   {    
     $this->entity->setName(array_shift($this->argumentsTemp));
-    $this->migration->createTable($this->entity);
-    $this->model->makeModel($this->entity);
-    $this->controller->makeController($this->entity);
-    //print_r($this);
+    $this->migrationFacade->createTable($this->entity);
+    $this->modelFacade->makeModel($this->entity);
+    $this->controllerFacade->makeController($this->entity);
   }
 
 
