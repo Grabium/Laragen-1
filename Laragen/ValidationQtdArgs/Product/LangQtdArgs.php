@@ -1,8 +1,10 @@
 <?php
 namespace Laragen\ValidationQtdArgs\Product;
 
-class HelpQtdArgs extends QtdArgs
-{
+//use Laragen\App\App;
+
+class LangQtdArgs extends QtdArgs
+{  
   public function validateQtdArgs(array $arguments)
   {
     //without restrictions.
