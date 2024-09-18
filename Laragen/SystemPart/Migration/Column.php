@@ -13,7 +13,7 @@ class Column
   public function __construct(Entity $entity)
   {
     $this->entity = $entity;
-    $this->patternType = Json::getJson(__DIR__.'/../../App/config/patternType.json');
+    $this->patternType = Json::getJson(__DIR__.'/patternType.json');
     unset($entity);
   }
   

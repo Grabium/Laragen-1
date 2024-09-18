@@ -1,0 +1,28 @@
+//$GLOBALS['teste'] = 'Teste deu tudo ok';
+
+//Devo criar uma classe Lang que chame a tradução.
+//Uma instância de Lang, $lang, deve possuir um array $seq = [] com as frases.
+//Uma variável global deve receber uma referência (como ponteiro) (&).
+//Esta, deve apontar para $lang->seg, ou diretamente para $seq, se possível.
+
+// Outra função de Lang é verificar se há um dado persistido que indique que o
+//desenvolvedor - usuário já configurou a lingagem. Essa configuração deve ser 
+//persistida em algum arquivo de cnfiguração geral em Laragen/App/config/config.json
+//caso não encotrada, deve perguntar ao desenv-user a linguagem.
+
+//outra função deve ser a possibilidade de modificar a linguagem através de um 
+//comando shell :
+//php gen -lang=pt-br
+//php gen -lang=default (que retorna eng-us)
+
+//Outra funcção de Lang deve ser a extração de sequências (frases) em um arquivo .txt
+//Este arquivo deve possuir em sequência, todas as frases. Para permitir criar uma nova
+//tradução.
+//php gen -lang--get   (recupera a atual)
+//para fazer a atualização, basta:
+//salvar o texto atualizado num .txt com o nome da língua exemplo:
+//pt-br.txt
+//colocar o arquivo .txt com a nova tradução
+//na mesma pasta que gen e mandar o código:
+//php gen -lang--update <nome_do_arquivo.txt>
+//futuramente, o script perguntará se deseja apagar o arquivo.
