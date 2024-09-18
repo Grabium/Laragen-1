@@ -20,13 +20,12 @@ class Model
     $end = ($aft - $bef);
     $loc =  substr($exitLine, $bef, $end);//separar para setLocalModel() e fileExists() como em controller
     if(!$this->entity->localModel = realpath(__DIR__.'/../../../'.$loc)){
-     exit('Fail');
+     exit('localModel Fail');
     }
   }
 
   public function replacement()
   {
-    //$dif = array_diff();
     $arrData = ['flag' => 'createModelVariables',
       'localFile' => $this->entity->localModel, 
       'data' => [$this->entity]

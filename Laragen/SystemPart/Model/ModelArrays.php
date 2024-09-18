@@ -16,15 +16,15 @@ class ModelArrays
   
   public function setFillable()
   {
-    print PHP_EOL.PHP_EOL.'Exclude of $fillable attribute? = [';
+    print PHP_EOL.PHP_EOL.$GLOBALS['lang']['l1019'].'? = [';
     $this->entity->fillable = [];
     foreach($this->entity->columns as $column){
       if(in_array($column['name'], $this->entity->imutableColumn)){continue;}
       $this->entity->fillable[] = $column['name'];
-      print $column['name'].' ';
+      print $column['name'].', ';
     }
     print ']'.PHP_EOL;
-    $question = 'Exclude an attribute above of "'.$this->entity->name.'->fillable" typing it and separates with space.'.PHP_EOL.' Or press [ENTER] for continue:';
+    $question = $GLOBALS['lang']['l1020'].'"'.$this->entity->name.'->fillable"'.$GLOBALS['lang']['l1021'];
     $cols = ($cols = Question::oneNameOrEnter($question)) ? $cols : '';
     if($cols != ''){
       $arrcols = explode(' ', $cols);
@@ -37,13 +37,13 @@ class ModelArrays
   {
     foreach($arrcols as $col){
       if(!in_array($col, $this->entity->fillable)){
-        print '"'.$col.'" Isn`t '.$this->entity->name.'->fillable". Let´s try again.'.PHP_EOL;
+        print '"'.$col.'"'.$GLOBALS['lang']['l1022'].$this->entity->name.'->fillable".'.$GLOBALS['lang']['l1023'];
         $this->setFillable();
         break;
       }
       $pos = array_search($col, $this->entity->fillable);
       $exc = array_splice($this->entity->fillable, $pos, 1);//retorna array com excluídos. Nesse caso apenas um por laço.
-      print 'Attribute "'.$exc[0].'" has removed of '.$this->entity->name.'->fillable sucessfuly".'.PHP_EOL;
+      print $GLOBALS['lang']['l1024'].'"'.$exc[0].'"'.$GLOBALS['lang']['l1025'].'"'.$this->entity->name.'->fillable".'.PHP_EOL;
     }
   }
 
@@ -56,7 +56,7 @@ class ModelArrays
       print $col.', ';
     }
     print ']'.PHP_EOL;
-    $question = 'Include any $fillable on "'.$this->entity->name.'->hidden" typing it and separates with space.'.PHP_EOL.' Or press [ENTER] for continue:';
+    $question = $GLOBALS['lang']['l1026'].' $fillable'. $GLOBALS['lang']['l1027'].'"'.$this->entity->name.'->hidden"'.$GLOBALS['lang']['l1028'];
     $cols = ($cols = Question::oneNameOrEnter($question)) ? $cols : '';
     if($cols != ''){
       $arrcols = explode(' ', $cols);
@@ -73,7 +73,7 @@ class ModelArrays
         break;
       }
       array_push($this->entity->hidden, $col,);
-      print 'Attribute "'.$col.'" has include on '.$this->entity->name.'->hidden sucessfuly".'.PHP_EOL.PHP_EOL;
+      print $GLOBALS['lang']['l1029'].'"'.$col.'"'.$GLOBALS['lang']['l1030'].$this->entity->name.'->hidden".'.PHP_EOL.PHP_EOL;
     }
   }
 }

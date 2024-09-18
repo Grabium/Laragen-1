@@ -29,11 +29,10 @@ class Entity
   
   public function setName(string $userInput)
   {
-    global $lang;
     $this->userInput = $userInput;
     $this->name = $this->userInput;
     $this->name = self::formatName($this->name);
-    $question   = $lang['l1005'].$this->name.'.'.PHP_EOL.$lang['l1006'];
+    $question   = $GLOBALS['lang']['l1005'].$this->name.'.'.PHP_EOL.$GLOBALS['lang']['l1006'];
     $this->name = ($name = Question::oneNameOrEnter($question)) ? $name : $this->name;
     $this->name = self::formatName($this->name);
   }

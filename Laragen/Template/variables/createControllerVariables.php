@@ -34,7 +34,7 @@ class <name>Controller extends Controller
   public function show($id)
   {
     $msg = <name>::findOrFail($id);
-    //outras opções:
+    //other options:
     //$msg = DB::table(\'<tableName>\')->select(\'<fillabels_not_hidden>\')->find($id);
     //$msg = DB::table(\'<tableName>\')->select(\'<fillabels_not_hidden>\')->where(\'name\', $id)->first(); //comparando entradas nome e id compatíveis.
     return response()->json([\'msg\' => $msg]);

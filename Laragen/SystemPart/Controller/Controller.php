@@ -17,7 +17,7 @@ class Controller
 
   public function setSubdirectory()
   {
-    $question = $lang['l1007'];
+    $question = $GLOBALS['lang']['l1007'];
     $subdirectoryController = ($subdirectoryController = Question::oneNameOrEnter($question)) ? $subdirectoryController : null ;
     $this->entity->subdirectoryController = SubDirController::validateSubDir($subdirectoryController);
   }
@@ -39,7 +39,7 @@ class Controller
     }else{
       $this->entity->localController = realpath(__DIR__.'/../../../app/Http/Controllers/'.$this->entity->subdirectoryController.'/'.$this->entity->name.'Controller.php');
     }
-    print 'Controller created!'.PHP_EOL;//realpath verifica se o arquivo já existees
+    print $GLOBALS['lang']['l1007.1'];//realpath verifica se o arquivo já existees
     $this->setNameSpace();
   }
 
@@ -69,7 +69,7 @@ class Controller
     if(!$success){
       exit('Controller overwrite fail'.PHP_EOL);
     }
-    print 'Controller overwited!'.PHP_EOL;
+    print $GLOBALS['lang']['l1007.2'];
     
   }
   

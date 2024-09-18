@@ -29,7 +29,7 @@ class Migration
 
   public function confirmTableName()
   {
-    $question = 'Table: '.$this->entity->tableName.'.'.PHP_EOL.'Press [ENTER] to continue or type to rename the name of table:';
+    $question = $GLOBALS['lang']['l1015'].$this->entity->tableName.'.'.PHP_EOL.$GLOBALS['lang']['l1016'];
     $this->entity->tableName = ($name = Question::oneNameOrEnter($question)) ? $name : $this->entity->tableName;
     $this->formactName($this->entity->tableName);
   }
@@ -42,7 +42,7 @@ class Migration
     $end = ($aft - $bef);
     $this->entity->nameMigration =  substr($exitLine, $bef, $end).'.php';
     if(!$this->entity->localMigration = realpath(__DIR__.'/../../../database/migrations/'.$this->entity->nameMigration)){
-      exit('fail on setLocalMigration()');
+      exit($GLOBALS['lang']['l1017']);
     }
   }
   
@@ -54,10 +54,9 @@ class Migration
     
     $success = (new Template($arrData))->overrideFile();//string
     if($success == false){
-      exit('Not make migrate corretlly');
+      exit($GLOBALS['lang']['l1018']);
     }
     
     print 'Migration ok!'.PHP_EOL;
   }
-  
 }

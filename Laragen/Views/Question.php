@@ -7,23 +7,19 @@ class Question
   {
     print $question.PHP_EOL;
     $inputChoice = trim(fgets(fopen('php://stdin', 'r')));
-    if(!$inputChoice){ //press [ENTER]
-      return null;
+    if(!$inputChoice){ 
+      return null;//pressed [ENTER]
     }
     return $inputChoice;
   }
 
-  public static function choiceInput(array $arrChoices = null)
+  public static function choiceInput(array $arrChoices): string|null
   {
-
-    if(($arrChoices == null)||($arrChoices == [])||($arrChoices == 0)){
-      return 'choiceInput([$question, $option_0, $option_1...$option_n ])';
-    }
     $question = array_shift($arrChoices);
     print $question.PHP_EOL;
     $inputChoice = trim(fgets(fopen('php://stdin', 'r')));
     if(!in_array($inputChoice, $arrChoices)){
-      return null;
+      return null; //pressed [ENTER]
     }
     return $inputChoice;
   }

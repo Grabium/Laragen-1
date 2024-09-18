@@ -8,8 +8,7 @@ class CrudQtdArgs extends QtdArgs
   public function validateQtdArgs(array $arguments)
   {
     if(count($arguments) != 1){
-      global $lang;//definida em Config\Lang
-      exit($lang['l1001'].PHP_EOL);
+      exit($GLOBALS['lang']['l1001'].PHP_EOL);
     }
   }
 }

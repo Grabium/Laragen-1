@@ -3,7 +3,7 @@ namespace Laragen\Template;
 
 class Template
 {
-  private string       $flag = '';
+  private string      $flag = '';
   private array  $arrayData = [];
   private string $localFile = '';
   
@@ -16,7 +16,6 @@ class Template
 
   public function overrideFile(): string
   {
-    //descompactar $entity
     $contentFile = implode("", file($this->localFile));//string
     require __DIR__.'/variables/'.$this->flag.'.php';//remake contentFile
     file_put_contents($this->localFile, $contentFile);
