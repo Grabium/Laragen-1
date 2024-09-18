@@ -16,7 +16,7 @@ class ModelArrays
   
   public function setFillable()
   {
-    print PHP_EOL.PHP_EOL.$GLOBALS['lang']['l1019'].'? = [';
+    print PHP_EOL.PHP_EOL.$GLOBALS['lang']['l1019'].'$fillable ? = [';
     $this->entity->fillable = [];
     foreach($this->entity->columns as $column){
       if(in_array($column['name'], $this->entity->imutableColumn)){continue;}
