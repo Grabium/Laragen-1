@@ -6,7 +6,7 @@ class Json
   public static function getJson(string $file):array
   {
     if(!file_exists($file)){
-      exit($file.' - não existe. - Em '.__CLASS__.' - line: '.__LINE__);
+      exit($file.$lang['l1003'].__CLASS__.$lang['l1004'].__LINE__);
     }
     
     $jsonFile = file_get_contents($file);

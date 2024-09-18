@@ -15,6 +15,9 @@ class App
 
   public function __construct(int $argc, array $argv)
   {
+    //$testeing = "e aleatório";
+    //$ok['valor'] = "bem sucedido $testeing";
+    //print "var {$ok['valor']}".' repeat:'.$testeing;exit();
     $config = new Config();
     $funcArgsValidateds = Validation::callHelpOrNot($argv);//array(função, argumentos) talvez o help.
     $this->fgen = FgenCreator::callFactory($funcArgsValidateds);//retorna o objeto/função

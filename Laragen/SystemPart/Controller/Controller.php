@@ -17,7 +17,7 @@ class Controller
 
   public function setSubdirectory()
   {
-    $question = 'Type the name of subdirectory for controller Or Press [ENTER] to skip'.PHP_EOL.'Look: New/Sub/Directory'.PHP_EOL.'Look: New Sub Directory';
+    $question = $lang['l1007'];
     $subdirectoryController = ($subdirectoryController = Question::oneNameOrEnter($question)) ? $subdirectoryController : null ;
     $this->entity->subdirectoryController = SubDirController::validateSubDir($subdirectoryController);
   }

@@ -18,7 +18,7 @@ class FacadeController
     $exitLine = Code::runCode($this->controller->setCreatorCode());
     $this->controller->setLocalController();
     $this->controller->crudReplacement();
-    var_dump($this->controller);
+    //var_dump($this->controller);
 
     //perguntar se é uma api e configurar entity->route : api|web -
     //perguntar se haverá uma validação na requisição para este crud para setar palavras chave nos endpoints adequados

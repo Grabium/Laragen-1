@@ -9,9 +9,12 @@ class Column
 {
   private Entity $entity;
   private array  $patternType = [];//buscar do json
+  private array  $lang        = [];//recebe global
   
   public function __construct(Entity $entity)
   {
+    global $lang;
+    $this->lang = $lang;
     $this->entity = $entity;
     $this->patternType = Json::getJson(__DIR__.'/patternType.json');
     unset($entity);
@@ -20,16 +23,15 @@ class Column
   public function setColumns()
   {
     $this->entity->columns = [['type' => 'unsignedBigInteger', 'name' => 'id']];
-    print 'Put the columns names. Not is needed put \'ID\'.'.PHP_EOL;
+    print $this->lang['l1008'];
     
     while(true){
-      $question = 'Set a name column or press [ENTER] for skip: ';
+      $question = $this->lang['l1009'];
       $name = Question::oneNameOrEnter($question);
       
       
       if($name == null){
-        print 'Columns presets.'.PHP_EOL;
-        print 'For default, is writed like STRING on doc migrate. You can customize this after this and before migrate.'.PHP_EOL;
+        print $this->lang['l1010'];
         break;
         
       }else{
@@ -38,7 +40,7 @@ class Column
         print PHP_EOL;
         $type = (array_key_exists($name, $this->patternType)) ? $this->patternType[$name] : 'string';
         $this->entity->columns[] = ['type' => $type, 'name' => $name];
-        print 'Next column:'.PHP_EOL;
+        print $this->lang['l1011'];
       }
     }
     $this->entity->columns[] = ['type' => 'timestamp', 'name' => 'created_at'];
@@ -50,7 +52,7 @@ class Column
 
   public function showColumns(array $columns)
   {
-    print 'Show columns:'.PHP_EOL.PHP_EOL;
+    print $this->lang['l1012'];
     foreach($columns as $key => $item){
       print $key.' - '.$item['type'].'('.$item['name'].')'.PHP_EOL;
     }
@@ -59,7 +61,7 @@ class Column
 
   public function rechangeColumns()
   {
-    $question = 'Change a choice: '.PHP_EOL.'Reset[1] Retype[2] Confrim[enter]';
+    $question = $this->lang['l1013'];
     $ci = Question::choiceInput([$question , '1', '2']);
     if($ci == 1){
       $this->setColumns();
@@ -76,7 +78,7 @@ class Column
         continue;
       }
 
-      $question = 'Rechange type of this column?'.PHP_EOL.'Column: '.$key.' -> '.$item['type'].'('.$item['name'].')'.PHP_EOL;
+      $question = $this->lang['l1014'].$key.' -> '.$item['type'].'('.$item['name'].')'.PHP_EOL;
       $newType = ($newType = Question::oneNameOrEnter($question)) ? $newType : $item['type'];
       $this->entity->columns[$key] = ['type' => $newType, 'name' => $item['name']];
       print PHP_EOL;
