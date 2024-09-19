@@ -8,11 +8,10 @@ use Laragen\Fgen\Product\Fgen;
 class App
 {
   private  Fgen $fgen;
-  public Config $config;
   
   public function __construct(int $argc, array $argv)
   {
-    $config = new Config();
+    new Config();
     $funcArgsValidateds = Validation::callHelpOrNot($argv);//array(função, argumentos) talvez o help.
     $this->fgen = FgenCreator::callFactory($funcArgsValidateds);//retorna o objeto/função
     Validation::verifyQtdArgsAccordingFunction($this->fgen);

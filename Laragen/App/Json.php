@@ -6,11 +6,16 @@ class Json
   public static function getJson(string $file):array
   {
     if(!file_exists($file)){
-      exit($file.$lang['l1003'].__CLASS__.$lang['l1004'].__LINE__);
+      exit('File: "'.$file.'" Does not exist at: '.__CLASS__.' - Line: '.__LINE__);
     }
     
     $jsonFile = file_get_contents($file);
-    $arrayFileContent = json_decode($jsonFile, true);
+    
+    if(!$arrayFileContent = json_decode($jsonFile, true)){
+      print $jsonFile.PHP_EOL;
+      exit('Verify formact or content of file: '.realpath($file).PHP_EOL);
+    }
+    
     return $arrayFileContent;
   }
 
