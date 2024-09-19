@@ -2,7 +2,9 @@
 namespace Laragen\Fgen\Product;
 
 use Laragen\Config\Lang\Lang as Lang_config;
+use Laragen\App\Json;
 
+//To change the language
 class Lang extends Fgen
 {
   public array $argumentsTemp = [];
@@ -17,14 +19,31 @@ class Lang extends Fgen
   public function run()
   {
     $this->argumentsTemp = [];
-    $this->switchLang();
+    
+    if(!$this->avoidReWork()){
+      $this->switchLang();
+    }
+
+    $this->lang->setLockLangFgen(false);
+    
   }
 
-  public function switchLang()
+  private function switchLang()
   {
+    if(!$language = $this->lang->isSetted()){
+      $this->update('temporary/temporary');
+    }
+    
     $language = $this->lang->choseALang();
     $this->lang->set($language);
-    //implementar fazer a troca no sistema. pois ele configura o json mas nao troca a var global.
-    exit($GLOBALS['lang']['l1031']);
+    $this->lang->update($language, true);
+    exit();
+  }
+
+  //caso tente "php gen lang" antes de usar "php gen" pela primeira vez.
+  private function avoidReWork(): bool
+  {
+    $config = Json::getJson(__DIR__.'/../../Config/config.json');
+    return $config['block_call_langFgen'];
   }
 }
