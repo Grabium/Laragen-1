@@ -5,25 +5,26 @@ $entity = $this->arrayData[0];
 '{
     use HasFactory;';
 
-  $fillable = '[';
+  $fillable = '';
   foreach($entity->fillable as $k => $f){
-    $fillable .= '\''.$f.'\', ';
+    $fillable .= "'$f', ";
   }
-  $fillable .= ']';
+  $fillable = substr($fillable, 0, -2);
+  //$fillable .= '';
 
 
-  $hidden = '[';
+  $hidden = '';
   foreach($entity->hidden as $k => $h){
-    $hidden .= '\''.$h.'\', ';
+    $hidden .= "'$h', ";
   }
-  $hidden .= ']';
+  $hidden = substr($hidden, 0, -2);
 
   $newContent =
 '{
 
   protected $table = \''.$entity->tableName.'\';
-  protected $fillable = '.$fillable.';
-  protected $hidden = '.$hidden.';
+  protected $fillable = ['.$fillable.'];
+  protected $hidden = ['.$hidden.'];
   
   /*public function <entity>()
   {

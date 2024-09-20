@@ -20,7 +20,7 @@ class <name>Controller extends Controller
   public function index()
   {
     $msg = DB::table(\'<tableName>\')
-      ->select(\'<fillabels_not_hidden>\')
+      ->select(<fillabels_not_hidden>)
       ->get();
     return response()->json([\'msg\' => $msg]);
   }
@@ -65,6 +65,7 @@ $contentFile = str_replace('<tableName>', $entity->tableName, $contentFile);
 $fillabels_not_hidden = '';
 foreach($entity->fillable as $k => $item){
   if(in_array($item, $entity->hidden)){continue;}
-  $fillabels_not_hidden .= $item.', ';
+  $fillabels_not_hidden .= "'$item', ";
 }
+$fillabels_not_hidden = substr($fillabels_not_hidden, 0, -2);
 $contentFile = str_replace('<fillabels_not_hidden>', $fillabels_not_hidden, $contentFile);
